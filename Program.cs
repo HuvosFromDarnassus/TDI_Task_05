@@ -51,17 +51,17 @@ namespace TDI_Task_05
                         Fx = i;
                         Fy = j;
                     }
-                    else if (map[i, j] == 'E')
+                    else if (map[i, j] == 'X')
                     {
                         E_enX = i;
                         E_enY = j;
                     }
-                    else if (map[i, j] == 'V')
+                    else if (map[i, j] == 'Q')
                     {
                         V_enX = i;
                         V_enY = j;
                     }
-                    else if (map[i, j] == 'O')
+                    else if (map[i, j] == 'M')
                     {
                         O_enX = i;
                         O_enY = j;
@@ -79,7 +79,40 @@ namespace TDI_Task_05
             {
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
-                    Console.Write(map[i, j]);
+                    if (map[i, j] == '█')
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.Write(map[i, j]);
+                        Console.ResetColor();
+                    }
+                    else if (map[i, j] == '■')
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(map[i, j]);
+                        Console.ResetColor();
+                    }
+                    else if (map[i, j] == '*')
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(map[i, j]);
+                        Console.ResetColor();
+                    }
+                    else if (map[i, j] == 'X' || map[i, j] == 'Q' || map[i, j] == 'M')
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(map[i, j]);
+                        Console.ResetColor();
+                    }
+                    else if (map[i, j] == 'F')
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.Write(map[i, j]);
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.Write(map[i, j]);
+                    }
                 }
                 Console.WriteLine();
             }
@@ -137,10 +170,12 @@ namespace TDI_Task_05
 
         static void HP_Mistakes()
         {
-            Console.Write('[');
+            Console.Write("HP: [");
             for (int i = 0; i < Helth; i++)
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.Write('#');
+                Console.ResetColor();
             }
             if (Helth < 10)
             {
@@ -152,7 +187,7 @@ namespace TDI_Task_05
             Console.Write("]\n");
             if (mist == true)
             {
-                Console.WriteLine("There's a wall ahead, there's no way\n");
+                Console.WriteLine(" THERE'S A WALL AHEAD, THERE'S NO WAY!\n");
                 mist = false;
             }
             else Console.Write("\n\n");
@@ -214,9 +249,9 @@ namespace TDI_Task_05
                 }
                 if ((HeroX == E_enX) && (HeroY == E_enY) || (HeroX == V_enX) && (HeroY == V_enY) || (HeroX == O_enX) && (HeroY == V_enY)) Helth--;
 
-                En_way('E', ref E_enX, ref E_enY);
-                En_way('V', ref V_enX, ref V_enY);
-                En_way('O', ref O_enX, ref O_enY);
+                En_way('X', ref E_enX, ref E_enY);
+                En_way('Q', ref V_enX, ref V_enY);
+                En_way('M', ref O_enX, ref O_enY);
 
                 if ((HeroX == E_enX) && (HeroY == E_enY) || (HeroX == V_enX) && (HeroY == V_enY) || (HeroX == O_enX) && (HeroY == V_enY)) Helth--;
 
